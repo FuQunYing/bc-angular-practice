@@ -5,12 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { AppComponent } from './app.component';
-import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LayoutComponent
   ],
   imports: [
     BrowserModule,
