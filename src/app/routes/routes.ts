@@ -12,7 +12,7 @@ export const routes = [
             {path : 'dashboard' , component : DashboardComponent},
             {path : 'order' , loadChildren : './order/order.module#OrderModule'},
             {path : 'goods' , loadChildren : './goods/goods.module#GoodsModule' },
-            {path : 'finance' , componet : FinanceComponent},
+            {path : 'finance' , component : FinanceComponent},
             {path : 'enter' , loadChildren : './enter/enter.module#EnterModule'},
             {path : 'account', loadChildren : './account/account.module#AccountModule' },
             {path : 'pages' , loadChildren : './pages/pages.module#PagesModule'}
