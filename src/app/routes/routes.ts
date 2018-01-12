@@ -3,7 +3,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FinanceComponent } from './finance/finance.component';
 import { LoginComponent } from './pages/login/login.component';
 import { Page404Component } from './pages/page404/page404.component';
-// 路由守卫
+import { AuthGuardGuard } from '../service/auth-guard.service';
+
 
 export const routes = [
       {path: '', component : LayoutComponent, children : [
@@ -16,7 +17,7 @@ export const routes = [
             {path : 'account', loadChildren : './account/account.module#AccountModule' },
             {path : 'pages' , loadChildren : './pages/pages.module#PagesModule'}
       ],
-      canActivate : []
+      canActivate : [AuthGuardGuard]
     },
     // 单页面，不被layout包裹
     {path : '**' , redirectTo : 'login'},
