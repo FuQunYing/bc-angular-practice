@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 import { CookiesService } from './cookies.service';
 
 @Injectable()
-export class AuthGuardGuard implements CanActivate {
+export class AuthGuardService implements CanActivate {
       constructor(private authService: AuthService,
                         private router: Router,
                         private _cookie: CookiesService
