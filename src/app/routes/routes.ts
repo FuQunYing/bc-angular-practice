@@ -7,16 +7,18 @@ import { AuthGuardService } from '../service/auth-guard.service';
 
 
 export const routes = [
-      {path: '', component : LayoutComponent, children : [
-            {path : '' , redirectTo : 'dashboard ' , pathMatch : 'full'},
-            {path : 'dashboard' , component : DashboardComponent},
-            {path : 'order' , loadChildren : './order/order.module#OrderModule'},
-            {path : 'goods' , loadChildren : './goods/goods.module#GoodsModule' },
-            {path : 'finance' , component : FinanceComponent},
-            {path : 'enter' , loadChildren : './enter/enter.module#EnterModule'},
-            {path : 'account', loadChildren : './account/account.module#AccountModule' },
-            {path : 'pages' , loadChildren : './pages/pages.module#PagesModule'}
-      ],
+      {path: '',
+            component : LayoutComponent,
+            children : [
+                  {path : '' , redirectTo : 'dashboard ' , pathMatch : 'full'},
+                  {path : 'dashboard' , component : DashboardComponent},
+                  {path : 'order' , loadChildren : './order/order.module#OrderModule'},
+                  {path : 'goods' , loadChildren : './goods/goods.module#GoodsModule' },
+                  {path : 'finance' , component : FinanceComponent},
+                  {path : 'enter' , loadChildren : './enter/enter.module#EnterModule'},
+                  {path : 'account', loadChildren : './account/account.module#AccountModule' },
+                  {path : 'pages' , loadChildren : './pages/pages.module#PagesModule'}
+            ],
       canActivate : [AuthGuardService]
     },
     // 单页面，不被layout包裹
