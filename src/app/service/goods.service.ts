@@ -1,5 +1,6 @@
 import { Injectable , Inject} from '@angular/core';
 import {Headers, Http} from '@angular/http';
+import { locale } from 'moment';
 
 @Injectable()
 export class GoodsService {
@@ -131,7 +132,7 @@ export class GoodsService {
        * @param {string} appid
        * @returns {Promise<any>}
        */
-      bindingTA(id: number, appid: string): Promise<any>{
+      bindingTA(id: number, appid: string): Promise<any> {
             const body = {
                   'data': {
                         'userid': localStorage.getItem(`userid`),
@@ -150,7 +151,7 @@ export class GoodsService {
        * @param {object} o
        * @returns {Promise<any>}
        */
-      createChannel(o: any): Promise<any>{
+      createChannel(o: any): Promise<any> {
             const body = {
                   'data': {
                         'userid': localStorage.getItem(`userid`),
@@ -161,6 +162,90 @@ export class GoodsService {
                   'sign': '1234'
             };
             const uri = `${this.config.uri}/template/channel/create`;
+            return this.http
+                              .post(uri, JSON.stringify(body), {headers: this.headers})
+                              .toPromise();
+      }
+      /**
+       * 更新模板菜单
+       * @param o
+       * @returns {Promise<any>}
+       */
+      updateChannel(o: any): Promise<any> {
+            const body = {
+                  'data': {
+                        'userid': localStorage.getItem(`userid`),
+                        'channel': Number(o.channel),
+                        'template': Number(o.template),
+                        'num': o.num,
+                        'name': o.name
+                  },
+                  'sign': '1234'
+            };
+            const uri = `${this.config.uri}/template/channel/update`;
+            return this.http
+                              .post(uri, JSON.stringify(body), {headers: this.headers})
+                              .toPromise();
+      }
+      /**
+       * 模板菜单删除
+       * @param {number} channel
+       * @param {number} template
+       * @returns {Promise<any>}
+       */
+      delChannel(channel: number, template: number): Promise<any> {
+            const body = {
+                  'data': {
+                        'userid': localStorage.getItem(`userid`),
+                        'channel': channel,
+                        'template': template
+                  },
+                  'sign': '1234'
+            };
+            const uri = `${this.config.uri}/template/channel/del`;
+            return this.http
+                              .post(uri, JSON.stringify(body), {headers: this.headers})
+                              .toPromise();
+      }
+      /**
+       * 模板菜单 商品绑定
+       * @param {number} channel
+       * @param {number} goods
+       * @param {number} num
+       * @param {string} act  :  update为更新；band为绑定
+       * @returns {Promise<any>}
+       */
+      bandChannel(o: any, act: string): Promise<any> {
+            const body = {
+                  'data': {
+                        'userid': localStorage.getItem(`userid`),
+                        'channel': Number(o.channel),
+                        'goods': Number(o.goods),
+                        'num': Number(o.num)
+                  },
+                  'sign': '1234'
+            };
+            const uri = `${this.config.uri}/template/goods/${act}`;
+            return this.http
+                              .post(uri, JSON.stringify(body), {headers: this.headers})
+                              .toPromise();
+      }
+      /**
+       * 模板菜单 商品解绑
+       * @param {number} channel
+       * @param {number} goods
+       * @returns {Promise<any>}
+       */
+      delChannelBand(channel: number, goods: number): Promise<any> {
+            const body = {
+                  'data': {
+                        'userid': localStorage.getItem('userid'),
+                        'channel': channel,
+                        'goods': goods
+                  },
+                  'sign': '1234'
+            };
+            const uri = `${this.config.uri}/template/goods/del`;
             return this.http
                               .post(uri, JSON.stringify(body), {headers: this.headers})
                               .toPromise();
