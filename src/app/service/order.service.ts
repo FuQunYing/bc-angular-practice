@@ -25,7 +25,7 @@ export class OrderService {
                   'sign': '1234'
             };
             console.log(JSON.stringify(body));
-            const uri = `${this.config.uri}/prder/list`;
+            const uri = `${this.config.uri}/order/list`;
             return this.http
                               .post(uri, JSON.stringify(body), {headers: this.headers})
                               .toPromise();
