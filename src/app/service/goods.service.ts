@@ -7,7 +7,7 @@ export class GoodsService {
             'Content-Type': 'application/json; charset=UTF-8',
             'x-access-token': localStorage.getItem('t')
       });
-      constructor(@Inject('BASE_CONFIG') private cofig, private http: Http) { }
+      constructor(@Inject('BASE_CONFIG') private config, private http: Http) { }
       /**
        * 获取所有商品
        * @returns {Promise<any>}
@@ -22,7 +22,7 @@ export class GoodsService {
                   'sige': '1234'
             };
             console.log(JSON.stringify(body));
-            const uri = `${this.cofig.uri}/goods/query`;
+            const uri = `${this.config.uri}/goods/query`;
             return this.http
                               .post(uri, JSON.stringify(body), {headers : this.headers})
                               .toPromise();
@@ -45,7 +45,7 @@ export class GoodsService {
                   'sign': '1234'
             };
             console.log(JSON.stringify(body));
-            const uri = `${this.cofig.uri}/goods/create`;
+            const uri = `${this.config.uri}/goods/create`;
             return this.http
                               .post(uri, JSON.stringify(body), {headers: this.headers})
                               .toPromise();
@@ -68,7 +68,7 @@ export class GoodsService {
                   'sign': '1234'
             };
             console.log(JSON.stringify(body));
-            const uri = `${this.cofig.uri}/goods/update`;
+            const uri = `${this.config.uri}/goods/update`;
             return this.http
                               .post(uri, JSON.stringify(body), {headers: this.headers})
                               .toPromise();
@@ -77,6 +77,92 @@ export class GoodsService {
        * 获取模板
        * @param {Array<number>} template
        * @returns {Promise<any>}
-       * TODO
        */
+      getTemplate(template?: Array<number>): Promise<any> {
+            const body = {
+                  'data': {
+                        'userid': localStorage.getItem(`userid`),
+                        'template': template ? template : []
+                  },
+                  'sign': '1234'
+            };
+            const uri = `${this.config.uri}/template/query`;
+            return this.http
+                              .post(uri, JSON.stringify(body), {headers: this.headers})
+                              .toPromise();
+      }
+      /**
+       * 创建模板
+       * @returns {Promise<any>}
+       */
+      createTemplate(): Promise<any> {
+            const body = {
+                  'data': {
+                        'userid': localStorage.getItem(`userid`)
+                  },
+                  'sign': '1234'
+            };
+            const uri = `${this.config.uri}/template/create`;
+            return this.http
+                              .post(uri, JSON.stringify(body), {headers: this.headers})
+                              .toPromise();
+      }
+      /**
+       * 模板删除
+       * @param {number} id
+       * @returns {Promise<any>}
+       */
+      delTemplate(id: number): Promise<any> {
+            const body = {
+                  'data': {
+                        'userid': localStorage.getItem(`userid`),
+                        'template': id
+                  },
+                  'sign': '1234'
+            };
+            const uri = `${this.config.uri}/template/del`;
+            return this.http
+                              .post(uri, JSON.stringify(body), {headers: this.headers})
+                              .toPromise();
+      }
+      /**
+       * 模板绑定APPID
+       * @param {number} id
+       * @param {string} appid
+       * @returns {Promise<any>}
+       */
+      bindingTA(id: number, appid: string): Promise<any>{
+            const body = {
+                  'data': {
+                        'userid': localStorage.getItem(`userid`),
+                        'template': id,
+                        'appid': appid
+                  },
+                  'sign': '1234'
+            } ;
+            const uri = `${this.config.uri}/template/band`;
+            return this.http
+                              .post(uri, JSON.stringify(body), {headers: this.headers})
+                              .toPromise();
+      }
+      /**
+       * 创建模板菜
+       * @param {object} o
+       * @returns {Promise<any>}
+       */
+      createChannel(o: any): Promise<any>{
+            const body = {
+                  'data': {
+                        'userid': localStorage.getItem(`userid`),
+                        'template': o.template,
+                        'num': Number(o.num),
+                        'name': o.name
+                  },
+                  'sign': '1234'
+            };
+            const uri = `${this.config.uri}/template/channel/create`;
+            return this.http
+                              .post(uri, JSON.stringify(body), {headers: this.headers})
+                              .toPromise();
+      }
 }
