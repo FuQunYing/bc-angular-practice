@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FileUploadModule } from 'ng2-file-upload';
 
-import { SharedModule } from '../../shared/shared,module';
+import { SharedModule } from '../../shared/shared.module';
 
 import { LibsComponent } from './libs/libs.component';
 import { SellComponent } from './sell/sell.component';

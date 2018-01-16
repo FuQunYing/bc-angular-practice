@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule , Routes } from '@angular/router';
-import { SharedModule } from '../../shared/shared,module';
+import { SharedModule } from '../../shared/shared.module';
 import { PersonComponent } from './person/person.component';
 import { SettingComponent } from './setting/setting.component';
 import { NewPersonComponent } from './person/new-person.component';
