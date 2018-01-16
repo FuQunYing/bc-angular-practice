@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { LayoutComponent } from './layout.component';
-import { SharedModule } from '../shared/shared,module';
+import { SharedModule } from '../shared/shared.module';
 import { HeaderComponent } from './header/header.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 
