@@ -50,7 +50,24 @@
               </div>
               <div nz-form-control nz-col [nzSm]="14">
                 <nz-input [nzSize]="'large'" formControlName="price"
-                                [nzType]="'text'" [nzId]="'price'"></nz-input>
+                                [nzType]="'text'" [nzId]="'price'" [nzPlaceHolder]="'商品价格'"></nz-input>
+              </div>
+            </div>
+            <div nz-form-item nz-row>
+              <div nz-form-label nz-col [nzSm]="6">
+                <label nz-form-item-required>商品图片</label>
+              </div>
+              <div nz-form-control nz-col [nzSm]="14">
+                <nz-input [nzSize]="'large'" formControlName="img"
+                                [nzType]="'text'" [nzId]="'img'" 
+                                [(ngModel)]="imgurl" style="display:none"></nz-input>
+                <input type="file" id="file1" accept ng2FileSelect [uploader]="uploader"
+                            (change)="selectedFileOnChanged($event)">
+              </div>
+            </div>
+            <div nz-form-item nz-row>
+              <div nz-form-label nz-col [nzSm]="6">
+                <label>预览</label>
               </div>
             </div>
           </form>

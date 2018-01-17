@@ -144,7 +144,7 @@ export class LibsComponent implements OnInit {
       return f;
     };
   }
-  selectedFileChanged(event: any) {
+  selectedFileOnChanged(event: any) {
     // 打印文件选择名称
     console.log(event.target.value);
   }
