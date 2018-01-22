@@ -61,15 +61,37 @@ export class GoodsService {
                   'data' : {
                         'userid': localStorage.getItem(`userid`),
                         'id': good.id_t,
-                        'goods_name': good.goods_name.t,
+                        'goods_name': good.goods_name_t,
                         'price': Number(good.price_t * 100),
                         'description': good.description_t,
-                        'tag': good.tag_t ? good.tag_t : '默认'
+                        'tag': good.tag_t ? good.tag_t : '默认',
+                        'pic' : good.img_t,
+                        'spec' : good.spec_t
                   },
                   'sign': '1234'
             };
             console.log(JSON.stringify(body));
             const uri = `${this.config.uri}/goods/update`;
+            return this.http
+                              .post(uri, JSON.stringify(body), {headers: this.headers})
+                              .toPromise();
+      }
+      /**
+       * 删除商品
+       * @param good
+       * @returns {Promise<any>}
+       * 2018/1/12 by valerie
+       */
+      delGoods(good: any): Promise<any> {
+            const body = {
+                  'data' : {
+                        'userid': localStorage.getItem(`userid`),
+                        'id': good.id
+                  },
+                  'sign': '1234'
+            };
+            console.log(JSON.stringify(body));
+            const uri = `${this.config.uri}/goods/del`;
             return this.http
                               .post(uri, JSON.stringify(body), {headers: this.headers})
                               .toPromise();

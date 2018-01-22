@@ -1,7 +1,10 @@
+import { NzModalService } from 'ng-zorro-antd';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GoodsService } from '../../../service/goods.service';
 import {FileUploader} from 'ng2-file-upload';
+import { NzModalComponent } from 'ng-zorro-antd/src/modal/nz-modal.component';
+
 
 @Component({
   selector: 'app-libs',
@@ -19,6 +22,7 @@ export class LibsComponent implements OnInit {
   isConfirmLoading_t: Boolean = false;
   validateForm: FormGroup;
   validateForm_t: FormGroup;
+  delConfirm: Boolean = false;
 
 // 文件上传
   imgurl: string;
@@ -34,6 +38,7 @@ export class LibsComponent implements OnInit {
     this.goodsService.getAllGoods()
           .then(res => {
             this.goods = res.json().result.data;
+            console.log(this.goods);
             this.loading = res.json().result.data.length > 0 ? true : false;
           });
   }
@@ -93,6 +98,7 @@ export class LibsComponent implements OnInit {
   handleCancel(e) {this.isVisible = false; }
   editOk() {
     this.isConfirmLoading_t = true;
+    this.validateForm_t.value.img = localStorage.getItem('img');
     console.log(this.validateForm_t.value);
     this.goodsService.updateGoods(this.validateForm_t.value)
           .then(res => {
@@ -107,7 +113,21 @@ export class LibsComponent implements OnInit {
     this.isVisible_edit = false;
     this.good_tmp = null;
   }
+  goodsDel(good: any) {
+    this.modelService.confirm({
+      'title' : '您确认删除该商品吗？',
+      onOk: () => {
+        this.goodsService.delGoods(good)
+          .then(res => {
+              console.log(res);
+              this.getInit();
+          });
+        },
+        onCancel() {}
+    });
+  }
   constructor(private goodsService: GoodsService,
+                      private modelService: NzModalService,
                       private fb: FormBuilder) { }
 
   ngOnInit() {
