@@ -65,13 +65,37 @@
                             (change)="selectedFileOnChanged($event)">
               </div>
             </div>
-            <div nz-form-item nz-row>
+            <!-- <div nz-form-item nz-row>
               <div nz-form-label nz-col [nzSm]="6">
                 <label>预览</label>
+              </div>
+              <div n-form-control nz-col [nzSm]="14">
+                <img src="{{imgurl}}" width="200" alt="">
+              </div>
+            </div> -->
+            <div nz-form-item nz-row>
+              <div nz-form-label nz-col [nzSm]="6">
+                <label>商品标签</label>
+              </div>
+              <div nz-form-control nz-col [nzSm]="14">
+                <nz-select formControlName="tag" [nzSize]="'large'" [nzPlaceHolder]="'商品标签'">
+                  <nz-option [nzLabel]="'热卖'" [nzValue]="'热卖'"></nz-option>
+                  <nz-option [nzLabel]="'新品'" [nzValue]="'新品'"></nz-option>
+                </nz-select>
+              </div>
+            </div>
+            <div nz-form-item nz-row>
+              <div nz-form-label nz-col [nzSm]="6">
+                <label nz-form-item-required>商品描述</label>
+              </div>
+              <div nz-form-control nz-col [nzSm]="14">
+                <nz-input [nzSize]="'large'" formControlName="decription" [nzType]="'textarea'" 
+                                [nzId]="'description'" [nzPlaceHolder]="'商品描述（140字以内）'"></nz-input>
               </div>
             </div>
           </form>
         </div>
+        
       </div>
     </ng-template>
     <ng-template #modalFooter></ng-template>
