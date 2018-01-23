@@ -52,7 +52,6 @@ export class LibsComponent implements OnInit {
   }
 
   uploadFile() {
-    // 上传
     this.uploader.queue[0].onSuccess = function(response, status, headers) {
       // 上传文件成功
       if (status === 200) {
@@ -90,6 +89,7 @@ export class LibsComponent implements OnInit {
               this.isVisible = false;
               this.isConfirmLoading = false;
               this.getInit();
+              this.uploader.clearQueue(); // 调用一次clear，清除上一次上传保存下来的图片信息
             });
     } else {
       alert ('请上传图片');
@@ -107,6 +107,7 @@ export class LibsComponent implements OnInit {
             this.isConfirmLoading_t = false;
             this.good_tmp = null;
             this.getInit();
+            this.uploader.clearQueue(); // 调用一次clear，清除上一次上传保存下来的图片信息
           });
   }
   editCancel(e) {

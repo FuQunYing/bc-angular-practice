@@ -53,7 +53,7 @@
             <button nz-button [nzType]="'dashed'">删除分类</button>
           </div>
           <div nz-col [nzSpan]="8" *ngFor="let good of c.goods">
-            <nz-card [nzNoHovering]="true" class="goods">
+            <nz-card [nzNoHovering]="true" class="goods" *ngIf="good.info">
               <ng-template #body>
                 <div class="goods-detail">
                   <div class="goods-desc">
