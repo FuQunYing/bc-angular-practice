@@ -114,7 +114,7 @@ goodsList = []; */
       this.validateForm.controls[i].markAsDirty();
     } */
     this.validateForm.value.img = localStorage.getItem('img');
-    console.log(this.validateForm.value);
+    console.log(this.validateForm.value); // 无法通过赋值为空来清空
     if (this.validateForm.value.img) {
       this.goodsService.createGoods(this.validateForm.value)
             .then(res => {
