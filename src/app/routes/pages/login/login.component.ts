@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/service.module';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -11,8 +12,10 @@ import { AuthService } from '../../../service/service.module';
 export class LoginComponent implements OnInit {
   t: string;
   n: string;
+  validateForm: Validators;
 
   constructor(private authService: AuthService,
+                      private fb: FormBuilder,
                       private router: Router) {
              if (localStorage.getItem(`isLoggedIn`)) {
                console.log('已经登录，跳转到dashbored');
@@ -23,8 +26,17 @@ export class LoginComponent implements OnInit {
             this.n = localStorage.getItem(`n`);
             this.authService.login(this.t, this.n);
         }
- 
+
   ngOnInit() {
+    this.validateForm = this.fb.group({
+      userName: [ null, [ Validators.required ] ],
+      password: [ null, [ Validators.required ] ],
+      remember: [ true ],
+    });
+  }
+  login() {
+    console.log(this.validateForm.value);
+    // TODO:请求login接口
   }
 
 }

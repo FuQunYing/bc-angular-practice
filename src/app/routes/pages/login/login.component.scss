@@ -1,0 +1,36 @@
+@import '../../../layout/header/header.component.scss';
+.ant-card-head {
+  background-color: #108ee9 !important;
+}
+.abs-center {
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.width-lg {
+  width: 320px!important;
+}
+.mt-lg {
+  margin-top: 120px!important;
+}
+.login-form {
+  max-width: 300px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}
+.title{
+  position: absolute;
+  right:50%;
+  font-size: 21px;
+  color:#fff;
+}
