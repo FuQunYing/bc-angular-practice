@@ -1,10 +1,11 @@
 import { NzModalService } from 'ng-zorro-antd';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit/*, ElementRef, ViewChild*/} from '@angular/core';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GoodsService } from '../../../service/goods.service';
 import {FileUploader} from 'ng2-file-upload';
 import { NzModalComponent } from 'ng-zorro-antd/src/modal/nz-modal.component';
-
+/* declare let require: any;
+const BScroll = require('better-scroll').default; */
 
 @Component({
   selector: 'app-libs',
@@ -23,7 +24,12 @@ export class LibsComponent implements OnInit {
   validateForm: FormGroup;
   validateForm_t: FormGroup;
   delConfirm: Boolean = false;
-
+// 滚动用
+/* @ViewChild('scroll') scrollEl: ElementRef;
+@ViewChild('goodScroll') goodEl: ElementRef;
+currentIndex = 0;
+menuList = [];
+goodsList = []; */
 // 文件上传
   imgurl: string;
   uploader: FileUploader = new FileUploader ({
@@ -40,7 +46,34 @@ export class LibsComponent implements OnInit {
             this.goods = res.json().result.data;
             console.log(this.goods);
             this.loading = res.json().result.data.length > 0 ? true : false;
+            /* setTimeout(() => {
+
+              // 计算每一个列表项所在区间
+              const list = this.goodEl.nativeElement;
+              console.log(list);
+              const glist = list.children[0].children;
+              for (let i = 0; i < glist.length; i++) {
+                this.goodsList.push(glist[i]);
+                if (i === 0) {
+                  this.menuList.push(-glist[i].clientHeight);
+                } else {
+                  this.menuList.push(-glist[i].clientHeight + this.menuList[i - 1]);
+                }
+              }
+              this['goodsScroll'] = new BScroll(list, {
+                click: true,
+                probeType: 3
+              });
+              // 监听右列表滚动
+              this['goodsScroll'].on('scroll', pos => {
+                this.currentIndex = this.menuList.findIndex((item) => item < pos.y);
+              });
+            }, 300); */
           });
+          /* const topH = this.topEl.nativeElement.clientHeight + this.headerEl.nativeElement.clientHeight;
+          const bottomH = this.footerEl.nativeElement.clientHeight;
+          const elH = window.innerHeight - topH - bottomH;
+          this.scrollEl.nativeElement.style.height = elH + 'px'; */
   }
 
   fileOverBase(e: any): void {
@@ -98,7 +131,7 @@ export class LibsComponent implements OnInit {
   handleCancel(e) {this.isVisible = false; }
   editOk() {
     this.isConfirmLoading_t = true;
-    this.validateForm_t.value.img = localStorage.getItem('img');
+    this.validateForm_t.value.img_t = localStorage.getItem('img');
     console.log(this.validateForm_t.value);
     this.goodsService.updateGoods(this.validateForm_t.value)
           .then(res => {
@@ -164,10 +197,10 @@ export class LibsComponent implements OnInit {
       this.files = this.uploader.queue;
       return f;
     };
+    // 滚动
   }
   selectedFileOnChanged(event: any) {
     // 打印文件选择名称
     console.log(event.target.value);
   }
-
 }
