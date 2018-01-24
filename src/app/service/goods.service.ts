@@ -11,14 +11,15 @@ export class GoodsService {
       constructor(@Inject('BASE_CONFIG') private config, private http: Http) { }
       /**
        * 获取所有商品
+       * @param i 起始页
        * @returns {Promise<any>}
        */
-      getAllGoods(): Promise<any> {
+      getAllGoods(i: any): Promise<any> { // start，起始页，pageSize，页面商品数量
             const body = {
                   'data': {
                         'userid': localStorage.getItem(`userid`),
-                        'page': 0,
-                        'pageSize': 10
+                        'start': i,
+                        'pageSize': 8
                   },
                   'sige': '1234'
             };

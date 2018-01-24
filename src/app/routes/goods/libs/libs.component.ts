@@ -1,11 +1,9 @@
 import { NzModalService } from 'ng-zorro-antd';
-import { Component, OnInit/*, ElementRef, ViewChild*/} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GoodsService } from '../../../service/goods.service';
 import {FileUploader} from 'ng2-file-upload';
 import { NzModalComponent } from 'ng-zorro-antd/src/modal/nz-modal.component';
-/* declare let require: any;
-const BScroll = require('better-scroll').default; */
 
 @Component({
   selector: 'app-libs',
@@ -16,6 +14,10 @@ export class LibsComponent implements OnInit {
   goods: any;
   good_tmp: any;
   loading: Boolean = false;
+  sloading: Boolean = false;
+  end: Boolean = false;
+  i: any = 0;
+  count: any;
 
   isVisible: Boolean = false;
   isVisible_edit: Boolean = false;
@@ -24,12 +26,7 @@ export class LibsComponent implements OnInit {
   validateForm: FormGroup;
   validateForm_t: FormGroup;
   delConfirm: Boolean = false;
-// 滚动用
-/* @ViewChild('scroll') scrollEl: ElementRef;
-@ViewChild('goodScroll') goodEl: ElementRef;
-currentIndex = 0;
-menuList = [];
-goodsList = []; */
+
 // 文件上传
   imgurl: string;
   uploader: FileUploader = new FileUploader ({
@@ -41,40 +38,59 @@ goodsList = []; */
   hasAnotherDropZoneOver = false;
   files: any[] = [];
   getInit() {
-    this.goodsService.getAllGoods()
+    this.goodsService.getAllGoods(this.i)
           .then(res => {
             this.goods = res.json().result.data;
+            this.count = res.json().result.count;
+            console.log(res.json());
             console.log(this.goods);
             this.loading = res.json().result.data.length > 0 ? true : false;
-            /* setTimeout(() => {
-
-              // 计算每一个列表项所在区间
-              const list = this.goodEl.nativeElement;
-              console.log(list);
-              const glist = list.children[0].children;
-              for (let i = 0; i < glist.length; i++) {
-                this.goodsList.push(glist[i]);
-                if (i === 0) {
-                  this.menuList.push(-glist[i].clientHeight);
-                } else {
-                  this.menuList.push(-glist[i].clientHeight + this.menuList[i - 1]);
-                }
-              }
-              this['goodsScroll'] = new BScroll(list, {
-                click: true,
-                probeType: 3
-              });
-              // 监听右列表滚动
-              this['goodsScroll'].on('scroll', pos => {
-                this.currentIndex = this.menuList.findIndex((item) => item < pos.y);
-              });
-            }, 300); */
           });
-          /* const topH = this.topEl.nativeElement.clientHeight + this.headerEl.nativeElement.clientHeight;
-          const bottomH = this.footerEl.nativeElement.clientHeight;
-          const elH = window.innerHeight - topH - bottomH;
-          this.scrollEl.nativeElement.style.height = elH + 'px'; */
   }
+  scroll() {
+    function getScrollTop() {// 获取滚动条当前的位置
+      let scrollTop = 0;
+      if (document.documentElement && document.documentElement.scrollTop) {
+          scrollTop = document.documentElement.scrollTop;
+      } else if (document.body) {
+          scrollTop = document.body.scrollTop;
+      }
+      return scrollTop;
+  }
+  function getClientHeight() { // 获取当前可视范围的高度
+      let clientHeight = 0;
+      if (document.body.clientHeight && document.documentElement.clientHeight) {
+          clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
+      } else {
+          clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
+      }
+      return clientHeight;
+  }
+  function getScrollHeight() { // 获取文档完整的高度
+      return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+  }
+  window.onscroll =  () => {
+      if (getScrollTop() + getClientHeight() >= getScrollHeight()) {
+          console.log('到底了');
+          if (this.goods) {
+            if (this.goods.length < this.count) {
+              this.sloading = true ;
+              this.i += 8;
+              this.goodsService.getAllGoods(this.i)
+                  .then(res => {
+                    for (let i = 0 ; i < res.json().result.data.length; i++ ) { // 遍历新获取到的数据数组，push到goods后
+                      this.goods.push(res.json().result.data[i]);
+                    }
+                    this.sloading = false;
+                    console.log(this.sloading, this.goods);
+                  });
+            } else {
+              this.end = true;
+            }
+        }
+      }
+  };
+}
 
   fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
@@ -198,6 +214,7 @@ goodsList = []; */
       return f;
     };
     // 滚动
+    this.scroll();
   }
   selectedFileOnChanged(event: any) {
     // 打印文件选择名称

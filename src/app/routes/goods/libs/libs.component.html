@@ -184,7 +184,7 @@
       </button>
     </ng-template>
   </nz-modal>
-  <!-- 编辑商品model -->
+  <!-- 编辑商品model TODO: 清除上一次编辑过的历史记录-->
   <nz-modal [nzVisible]="isVisible_edit" [nzTitle]="'编辑商品'" [nzContent]="modalContent_edit"
             [nzFooter]="modalFooter_edit"
             (nzOnCancel)="editCancel($event)" [nzWrapClassName]="'goods-modal'">
@@ -333,4 +333,10 @@
       </button>
     </ng-template>
   </nz-modal>
+</div>
+<div  class="loading" *ngIf="sloading">
+  <nz-spin [nzSize]="'large'" [nzTip]="'正在加载...'"></nz-spin>
+</div>
+<div *ngIf="end" class="loading">
+ <p>---- &nbsp;&nbsp; 人家也是有底线的呢 &nbsp;&nbsp; ----</p>
 </div>

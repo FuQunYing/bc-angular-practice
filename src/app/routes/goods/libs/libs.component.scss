@@ -1,0 +1,13 @@
+.loading{
+      width:100%;
+      height:auto;
+      text-align: center;
+      nz-spin{
+            width:100%;
+      }
+      p{
+            font-size:14px;
+            color:#aaa;
+            padding-bottom: 5px;
+      }
+}
