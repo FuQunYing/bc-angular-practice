@@ -47,7 +47,7 @@ export class LibsComponent implements OnInit {
             this.loading = res.json().result.data.length > 0 ? true : false;
           });
   }
-  scroll() {
+  scroll() { // 滚动到底自动加载下一页
     function getScrollTop() {// 获取滚动条当前的位置
       let scrollTop = 0;
       if (document.documentElement && document.documentElement.scrollTop) {
@@ -56,8 +56,8 @@ export class LibsComponent implements OnInit {
           scrollTop = document.body.scrollTop;
       }
       return scrollTop;
-  }
-  function getClientHeight() { // 获取当前可视范围的高度
+    }
+    function getClientHeight() { // 获取当前可视范围的高度
       let clientHeight = 0;
       if (document.body.clientHeight && document.documentElement.clientHeight) {
           clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
@@ -65,17 +65,17 @@ export class LibsComponent implements OnInit {
           clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
       }
       return clientHeight;
-  }
-  function getScrollHeight() { // 获取文档完整的高度
+    }
+    function getScrollHeight() { // 获取文档完整的高度
       return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
-  }
-  window.onscroll =  () => {
+    }
+   window.onscroll =  () => {
       if (getScrollTop() + getClientHeight() >= getScrollHeight()) {
           console.log('到底了');
           if (this.goods) {
             if (this.goods.length < this.count) {
               this.sloading = true ;
-              this.i += 8;
+              this.i += 12;
               this.goodsService.getAllGoods(this.i)
                   .then(res => {
                     for (let i = 0 ; i < res.json().result.data.length; i++ ) { // 遍历新获取到的数据数组，push到goods后
@@ -89,8 +89,8 @@ export class LibsComponent implements OnInit {
             }
         }
       }
-  };
-}
+   };
+  }
 
   fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;

@@ -19,7 +19,7 @@ export class GoodsService {
                   'data': {
                         'userid': localStorage.getItem(`userid`),
                         'start': i,
-                        'pageSize': 8
+                        'pageSize': 12
                   },
                   'sige': '1234'
             };

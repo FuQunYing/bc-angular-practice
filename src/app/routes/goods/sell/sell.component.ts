@@ -11,6 +11,7 @@ import { NzMessageService, NzModalService, NzNotificationService } from 'ng-zorr
 })
 export class SellComponent implements OnInit {
   template: any;
+  i: any = 0;
   goods = [
     {
       'goods_name': 'goods_name',
@@ -158,7 +159,7 @@ export class SellComponent implements OnInit {
   }
   addGoods(c: any) {
     const tmp = [];
-    this.goodsService.getAllGoods()
+    this.goodsService.getAllGoods(this.i)
           .then(res => {
             for (const i of res.json().result.data) {
               const temp = {value: i.id, label: i.id + i.goods_name};
