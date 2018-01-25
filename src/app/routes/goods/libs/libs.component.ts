@@ -16,6 +16,7 @@ export class LibsComponent implements OnInit {
   loading: Boolean = false;
   sloading: Boolean = false;
   end: Boolean = false;
+  totop: Boolean = false;
   i: any = 0;
   count: any;
 
@@ -42,8 +43,8 @@ export class LibsComponent implements OnInit {
           .then(res => {
             this.goods = res.json().result.data;
             this.count = res.json().result.count;
-            console.log(res.json());
-            console.log(this.goods);
+            // console.log(res.json());
+            // console.log(this.goods);
             this.loading = res.json().result.data.length > 0 ? true : false;
           });
   }
@@ -72,6 +73,7 @@ export class LibsComponent implements OnInit {
    window.onscroll =  () => {
       if (getScrollTop() + getClientHeight() >= getScrollHeight()) {
           console.log('到底了');
+          this.totop = true;
           if (this.goods) {
             if (this.goods.length < this.count) {
               this.sloading = true ;
@@ -85,6 +87,7 @@ export class LibsComponent implements OnInit {
                     console.log(this.sloading, this.goods);
                   });
             } else {
+              // this.totop = false;
               this.end = true;
             }
         }
@@ -137,8 +140,9 @@ export class LibsComponent implements OnInit {
               console.log(res);
               this.isVisible = false;
               this.isConfirmLoading = false;
+              this.i = 0;
               this.getInit();
-              this.uploader.clearQueue(); // 调用一次clear，清除上一次上传保存下来的图片信息
+              // this.uploader.clearQueue(); // 调用一次clear，清除上一次上传保存下来的图片信息，还是不要用比较好
             });
     } else {
       alert ('请上传图片');
@@ -155,8 +159,9 @@ export class LibsComponent implements OnInit {
             this.isVisible_edit = false;
             this.isConfirmLoading_t = false;
             this.good_tmp = null;
+            this.i = 0;
             this.getInit();
-            this.uploader.clearQueue(); // 调用一次clear，清除上一次上传保存下来的图片信息
+            // this.uploader.clearQueue(); // 调用一次clear，清除上一次上传保存下来的图片信息
           });
   }
   editCancel(e) {
@@ -170,6 +175,7 @@ export class LibsComponent implements OnInit {
         this.goodsService.delGoods(good)
           .then(res => {
               console.log(res);
+              this.i = 0;
               this.getInit();
           });
         },
@@ -219,5 +225,11 @@ export class LibsComponent implements OnInit {
   selectedFileOnChanged(event: any) {
     // 打印文件选择名称
     console.log(event.target.value);
+  }
+  toTop(event) {
+    event.preventDefault();
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    this.totop = false;
   }
 }

@@ -340,3 +340,9 @@
 <div *ngIf="end" class="loading">
  <p>---- &nbsp;&nbsp; 人家也是有底线的呢 &nbsp;&nbsp; ----</p>
 </div>
+<!-- 返回顶部 -->
+<div class="totop" *ngIf="totop">
+  <a href="#" (click)="toTop($event)">
+    <img src="../../../../assets/img/totop.png" alt="">
+  </a>
+</div>
