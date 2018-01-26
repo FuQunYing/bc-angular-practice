@@ -10,6 +10,7 @@
       - [[4f52e331](https://github.com/FuQunYing/bc-angular-practice)] 增加了编辑商品的图片上传功能
       - [[1e212d5c](https://github.com/FuQunYing/bc-angular-practice)] 增加了返回顶部功能
       - [[5abaef1e](https://github.com/FuQunYing/bc-angular-practice)] 增加了下拉触底刷新功能
+      - [[f38ec53e](https://github.com/FuQunYing/bc-angular-practice)] 更新了登录功能
 ---
 # BcExc
 
