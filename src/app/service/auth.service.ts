@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { Headers , Http } from '@angular/http';
 import {Router} from '@angular/router';
 import {CookiesService} from './cookies.service';
+import { stringify } from '@angular/core/src/render3/util';
 
 @Injectable()
 export class AuthService {
@@ -21,7 +22,7 @@ export class AuthService {
                         // 保存userid
                         this.userid = res.json().result.userid;
                         // 登录cookie，60分钟过期
-                        this._cookie.setCookie('login' , 'true' , 60);
+                        // this._cookie.setCookie('login' , 'true' , 60);
                         // 保存在localStorage
                         localStorage.setItem(`userid` , this.userid);
                         this.router.navigate(['dashboard']);
@@ -46,4 +47,20 @@ export class AuthService {
                   .post(uri, {} , {headers: this.headers})
                   .toPromise();
       }
+/**
+ * @param {user:string}
+ * @param {psw:string}
+ * @returns {Promise<any>}
+ */
+userlogin(user: string , pwd: string) {
+      const body = {
+            'data' : {
+                  'user': user,
+                  'pwd' : pwd
+            }
+      };
+      // console.log(JSON.stringify(body));
+      return this.http.post(`/api/login`, JSON.stringify(body), {headers : this.headers})
+                        .toPromise();
+}
 }

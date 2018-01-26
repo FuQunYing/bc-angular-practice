@@ -17,10 +17,6 @@
               <i class="anticon anticon-user"></i>
             </ng-template>
           </nz-input>
-          <div nz-form-explain 
-          *ngIf="validateForm.controls.userName.dirty&&validateForm.controls.userName.hasError('required')">
-          请输入用户名
-        </div>
         </div>
       </div>
       <div nz-form-item>
@@ -30,18 +26,15 @@
               <i class="anticon anticon-lock"></i>
             </ng-template>
           </nz-input>
-          <div nz-form-explain 
-          *ngIf="validateForm.controls.password.dirty&&validateForm.controls.password.hasError('required')">
-          请输入密码
         </div>
-        </div>
+        <p *ngIf="alert" class="alert"> * 登录失败，用户名或密码不正确</p>
       </div>
       <div nz-form-item>
         <div nz-form-control>
           <label nz-checkbox formControlName="remember">
             <span>记住密码</span>
           </label>
-          <a class="login-form-forgot" class="login-form-forgot">忘记密码</a>
+          <!-- <a class="login-form-forgot">忘记密码</a> -->
           <button nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'" (click)="login()">登录</button>
         </div>
       </div>
