@@ -1,17 +1,15 @@
-##release
-##v1.0.0
-- 2018-1-26 , Version1.6.4 , [@15136648640@163.com]( ) , @FuQunYing
-   - Change
+# release
+# v1.0.0
+-  ##### 2018-1-26 , Version1.6.4 , [@fqylovae@outlook.com](https://github.com/FuQunYing), [@FuQunYing](https://github.com/FuQunYing)
+   -  ##### Change
       - 增加了编辑商品的图片上传功能
       - 增加了返回顶部功能
       - 增加了下拉触底刷新功能
-   - Commit
-      - [4f52e331] 增加了编辑商品的图片上传功能
-      - [1e212d5c] 增加了返回顶部功能
-      - [5abaef1e] 增加了下拉触底刷新功能
-
-
-
+   -  ##### Commit
+      - [[4f52e331](https://github.com/FuQunYing/bc-angular-practice)] 增加了编辑商品的图片上传功能
+      - [[1e212d5c](https://github.com/FuQunYing/bc-angular-practice)] 增加了返回顶部功能
+      - [[5abaef1e](https://github.com/FuQunYing/bc-angular-practice)] 增加了下拉触底刷新功能
+---
 # BcExc
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
