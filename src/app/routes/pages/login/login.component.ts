@@ -36,7 +36,8 @@ export class LoginComponent implements OnInit {
   }
   login() {
     console.log(this.validateForm.value);
-    // TODO:请求login接口
+    // TODO:请求login接口，在模块 core里面，从地址栏解析到了t和n，存到localStorage，
+    // 问题是，当页面关闭以后，localStorage一直存在
   }
 
 }

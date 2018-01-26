@@ -87,10 +87,11 @@ export class LibsComponent implements OnInit {
                     console.log(this.sloading, this.goods);
                   });
             } else {
-              // this.totop = false;
               this.end = true;
             }
         }
+      }else {
+        this.totop = false;
       }
    };
   }
@@ -129,7 +130,7 @@ export class LibsComponent implements OnInit {
 
   handleOk() {
     this.isConfirmLoading = true ;
-/*     for (const i in this.validateForm.controls) {
+    /*     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
     } */
     this.validateForm.value.img = localStorage.getItem('img');
@@ -142,7 +143,8 @@ export class LibsComponent implements OnInit {
               this.isConfirmLoading = false;
               this.i = 0;
               this.getInit();
-              // this.uploader.clearQueue(); // 调用一次clear，清除上一次上传保存下来的图片信息，还是不要用比较好
+              this.uploader.clearQueue(); // 调用一次clear，清除上一次上传保存下来的图片信息，还是不要用比较好
+              localStorage.removeItem('img'); // 清除保存在localStorage里的img值，不影响下一次提交选择
             });
     } else {
       alert ('请上传图片');
@@ -161,7 +163,8 @@ export class LibsComponent implements OnInit {
             this.good_tmp = null;
             this.i = 0;
             this.getInit();
-            // this.uploader.clearQueue(); // 调用一次clear，清除上一次上传保存下来的图片信息
+            this.uploader.clearQueue(); // 调用一次clear，清除上一次上传保存下来的图片信息
+            localStorage.removeItem('img'); // 清除保存在localStorage里的img值，不影响下一次提交选择
           });
   }
   editCancel(e) {
