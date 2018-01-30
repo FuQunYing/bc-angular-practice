@@ -1,6 +1,10 @@
 # release
-# v1.6.4
--  ##### 2018-1-26 , Version1.6.4 , [@fqylovae@outlook.com](https://github.com/FuQunYing), [@FuQunYing](https://github.com/FuQunYing)
+# v1.0.2
+- 2018-1-30 version1.0.2 更新了商品内的模板显示，查询应用并展示应用内信息
+
+# release
+# v1.0.1
+-  ##### 2018-1-26 , Version1.0.1 , [@fqylovae@outlook.com](https://github.com/FuQunYing), [@FuQunYing](https://github.com/FuQunYing)
    -  ##### Change
       - 增加了编辑商品的图片上传功能
       - 增加了返回顶部功能
