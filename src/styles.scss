@@ -1,89 +1,93 @@
 /* You can add global styles to this file, and also import other style files */
-body{
-      background: #f5f7fa !important;
-    }
-    .content__title{
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-      -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-      justify-content: space-between;
-      color: #929292;
-      padding: 24px;
-      padding-top: 12px;
-      padding-bottom: 12px;
-      margin-right: -24px;
-      margin-left: -24px;
-      margin-bottom: 24px;
-      background-color: #fafbfc;
-      border-bottom: 1px solid #efe3e5;
-    }
-    .pt-lg {
-      padding-top: 24px!important;
-    }
-    .ant-card {
-      margin-bottom: 16px!important;
-    }
-    .list-header{
-      display: flex;
-      height: 24px;
-      overflow: hidden;
-      margin-bottom: 8px;
-      justify-content: space-between;
-      .list-title{
+body {
+  background: #f5f7fa !important;
+}
+
+.content__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  color: #929292;
+  padding: 24px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin-right: -24px;
+  margin-left: -24px;
+  margin-bottom: 24px;
+  background-color: #fafbfc;
+  border-bottom: 1px solid #efe3e5;
+}
+
+.pt-lg {
+  padding-top: 24px !important;
+}
+
+.ant-card {
+  margin-bottom: 16px !important;
+}
+
+.list-header {
+  display: flex;
+  height: 24px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  justify-content: space-between;
+  .list-title {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: bolder;
+  }
+  .phone {
+    line-height: 24px;
+  }
+}
+
+//goods
+.goods {
+  .ant-card-body {
+    padding: 15px !important;
+  }
+  .goods-detail {
+    display: flex;
+    flex-wrap: wrap;
+    .goods-desc {
+      flex: 0 0 50%;
+      max-width: 50%;
+      line-height: 2;
+      .goods-title {
         font-size: 16px;
-        line-height: 24px;
         font-weight: bolder;
       }
-      .phone{
-        line-height: 24px;
+      .goods-price {
+        color: #f50;
       }
     }
-    
-    //goods
-    .goods{
-      .ant-card-body{
-        padding: 15px !important;
-      }
-      .goods-detail{
-        display: flex;
-        flex-wrap: wrap;
-        .goods-desc{
-          flex: 0 0 50%;
-          max-width: 50%;
-          line-height: 2;
-          .goods-title{
-            font-size: 16px;
-            font-weight: bolder;
-          }
-          .goods-price{
-            color: #f50;
-          }
-        }
-        .goods-img{
-          flex: 0 0 50%;
-          max-width: 50%;
-          height: 120px;
-          overflow: hidden;
-          img{
-            display: block;
-            width: 100%;
-          }
-        }
-      }
-      .goods-handle{
-        float: right;
-        margin-top: 15px;
+    .goods-img {
+      flex: 0 0 50%;
+      max-width: 50%;
+      height: 120px;
+      overflow: hidden;
+      img {
+        display: block;
+        width: 100%;
       }
     }
-    .goods-modal {
-      .ant-modal {
-        width: 860px !important;
-      }
-    }
-    
-    
+  }
+  .goods-handle {
+    float: right;
+    margin-top: 15px;
+  }
+}
+
+.goods-modal {
+  .ant-modal {
+    width: 860px !important;
+  }
+}
+

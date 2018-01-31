@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-sidenav',
@@ -10,10 +10,13 @@ export class SidenavComponent implements OnInit {
   isOpenGoods: Boolean = false;
   isOpenEnter: Boolean = false;
   isOpenSetting: Boolean = false;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
+
   openChange(value) {
     if (value === 'Order') {
       this.isOpenGoods = false;

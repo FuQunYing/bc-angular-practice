@@ -1,10 +1,10 @@
 <div class="aside-inner">
   <ul nz-menu [nzMode]="'inline'">
     <li nz-menu-item>
-        <a routerLink="/dashboard">
-          <i class="anticon anticon-home"></i>
-          <span class="nav-text">首页</span>
-        </a>
+      <a routerLink="/dashboard">
+        <i class="anticon anticon-home"></i>
+        <span class="nav-text">首页</span>
+      </a>
     </li>
     <li nz-submenu [(nzOpen)]="isOpenOrder" (nzOpenChange)="openChange('Order')">
       <span title>
@@ -68,7 +68,7 @@
       </span>
       <ul>
         <li nz-menu-item>
-          <a  routerLink="/account/setting">门店设置</a>
+          <a routerLink="/account/setting">门店设置</a>
         </li>
         <li nz-menu-item>
           <a routerLink="/account/person">人员管理</a>

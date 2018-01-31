@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { OrderService } from '../../../service/order.service';
+import {Component, OnInit} from '@angular/core';
+import {OrderService} from '../../../service/order.service';
 import {NzModalService} from 'ng-zorro-antd';
 
 @Component({
@@ -11,14 +11,15 @@ export class TodoComponent implements OnInit {
   orders: Array<any> = [];
   loading: Boolean = false;
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService) {
+  }
 
   ngOnInit() {
     this.orderService.getAllOrder([2])
-          .then(res => {
-            this.orders = res.json().result.result.detail;
-            this.loading = res.json().result.result.count ? true : false;
-          });
+      .then(res => {
+        this.orders = res.json().result.result.detail;
+        this.loading = res.json().result.result.count ? true : false;
+      });
   }
 
 }

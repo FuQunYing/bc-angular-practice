@@ -1,7 +1,9 @@
 @import '../../../layout/header/header.component.scss';
+
 .ant-card-head {
   background-color: #108ee9 !important;
 }
+
 .abs-center {
   overflow: auto;
   margin: auto;
@@ -11,13 +13,16 @@
   bottom: 0;
   right: 0;
 }
+
 .width-lg {
-  width: 320px!important;
-  height:500px!important;
+  width: 320px !important;
+  height: 500px !important;
 }
+
 .mt-lg {
-  margin-top: 120px!important;
+  margin-top: 120px !important;
 }
+
 .login-form {
   max-width: 300px;
 }
@@ -29,13 +34,15 @@
 .login-form-button {
   width: 100%;
 }
-.title{
+
+.title {
   position: absolute;
-  right:50%;
+  right: 50%;
   font-size: 21px;
-  color:#fff;
+  color: #fff;
 }
-.alert{
-  font-size:12px;
-  color:#f00;
+
+.alert {
+  font-size: 12px;
+  color: #f00;
 }

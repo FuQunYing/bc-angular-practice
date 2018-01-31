@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NewEnterComponent } from './new-enter.component';
+import {NewEnterComponent} from './new-enter.component';
 
 describe('NewEnterComponent', () => {
   let component: NewEnterComponent;
@@ -8,9 +8,9 @@ describe('NewEnterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewEnterComponent ]
+      declarations: [NewEnterComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

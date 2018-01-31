@@ -33,6 +33,7 @@ export class SellComponent implements OnInit {
   ngOnInit() {
     this.init();
   }
+
   // 查询应用
   init() {
     this.goodsService.getApp().then(res => {
@@ -41,6 +42,7 @@ export class SellComponent implements OnInit {
       this.tempQuery();
     });
   }
+
   // 根据appid和appcode查询模板
   tempQuery(appcode?: number) {
     appcode = appcode ? appcode : 83;

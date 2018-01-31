@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { OrderService } from '../../../service/service.module';
-import { NzMessageService, NzModalService } from 'ng-zorro-antd';
+import {Component, OnInit} from '@angular/core';
+import {OrderService} from '../../../service/service.module';
+import {NzMessageService, NzModalService} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-new',
@@ -9,30 +9,31 @@ import { NzMessageService, NzModalService } from 'ng-zorro-antd';
 })
 export class NewComponent implements OnInit {
   orders: any;
-  loading = false ;
-  isVisible = false ;
+  loading = false;
+  isVisible = false;
   current = 1;
 
   constructor(private orderService: OrderService,
-                      private confirmServ: NzModalService,
-                      private _message: NzMessageService) { }
+              private confirmServ: NzModalService,
+              private _message: NzMessageService) {
+  }
 
   ngOnInit() {
     this.orderService.getAllOrder([1])
-          .then(res => {
-            this.orders = res.json().result.result.detail;
-            this.loading = res.json().result.count ? true : false ;
-          });
+      .then(res => {
+        this.orders = res.json().result.result.detail;
+        this.loading = res.json().result.count ? true : false;
+      });
   }
 
- /**
+  /**
    *订单操作确认框
    *@param order
    *@param {number} type
    */
   handle(order: any, type: number) {
     let desc;
-    let  reason;
+    let reason;
     desc = type === 2 ? `请确认订单信息，点击确认接单` : `确定拒绝该订单？`;
     reason = type === 2 ? `接单` : `拒绝`;
     /**
@@ -45,15 +46,15 @@ export class NewComponent implements OnInit {
       let _id;
       _id = this._message.loading('正在执行中', {nzDuration: 0}).messageId;
       this.orderService.updateStatus(ordernum, status, test)
-            .then(res => {
-              this._message.remove(_id);
-              if (res.json().rcode === 0) {
-                this._message.create(`success`,  `接单成功`);
-                window.location.reload();
-              } else {
-                this._message.create(`error`,  `接单失败:${res.json().msg}`);
-              }
-            });
+        .then(res => {
+          this._message.remove(_id);
+          if (res.json().rcode === 0) {
+            this._message.create(`success`, `接单成功`);
+            window.location.reload();
+          } else {
+            this._message.create(`error`, `接单失败:${res.json().msg}`);
+          }
+        });
     };
     /**
      * 取消操作

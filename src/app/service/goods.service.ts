@@ -80,26 +80,28 @@ export class GoodsService {
       .post(uri, JSON.stringify(body), {headers: this.headers})
       .toPromise();
   }
+
   /**
-       * 删除商品
-       * @param good
-       * @returns {Promise<any>}
-       * 2018/1/12 by valerie
-       */
-      delGoods(good: any): Promise<any> {
-        const body = {
-              'data' : {
-                    'userid': localStorage.getItem(`userid`),
-                    'id': good.id
-              },
-              'sign': '1234'
-        };
-        console.log(JSON.stringify(body));
-        const uri = `${this.config.uri}/goods/del`;
-        return this.http
-                          .post(uri, JSON.stringify(body), {headers: this.headers})
-                          .toPromise();
+   * 删除商品
+   * @param good
+   * @returns {Promise<any>}
+   * 2018/1/12 by valerie
+   */
+  delGoods(good: any): Promise<any> {
+    const body = {
+      'data': {
+        'userid': localStorage.getItem(`userid`),
+        'id': good.id
+      },
+      'sign': '1234'
+    };
+    console.log(JSON.stringify(body));
+    const uri = `${this.config.uri}/goods/del`;
+    return this.http
+      .post(uri, JSON.stringify(body), {headers: this.headers})
+      .toPromise();
   }
+
   /**
    * 获取模板
    * @param {Array<number>} template
@@ -286,20 +288,21 @@ export class GoodsService {
       .post(uri, JSON.stringify(body), {headers: this.headers})
       .toPromise();
   }
+
   /**
    * 应用查询
    * @returns {Promise<any>}
    */
   getApp(): Promise<any> {
     const body = {
-      'data' : {
+      'data': {
         'userid': localStorage.getItem(`userid`)
       },
       sign: ''
     };
     const uri = `${this.config.uri}/app/link/query`;
     return this.http
-        .post(uri, JSON.stringify(body), {headers: this.headers})
-        .toPromise();
+      .post(uri, JSON.stringify(body), {headers: this.headers})
+      .toPromise();
   }
 }
